@@ -1,7 +1,9 @@
 using System;
 
-namespace AgendaConsoleApp {
-    class Event : Entity {
+namespace AgendaConsoleApp 
+{
+    public class Event : Entity 
+    {
         public string Title { get; set; }
         public string Speaker { get; set; }
         public string Description { get; set; }

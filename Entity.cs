@@ -1,5 +1,8 @@
-namespace AgendaConsoleApp {
-    abstract class Entity {
+
+namespace AgendaConsoleApp 
+{
+    public abstract class Entity 
+    {
         public int Id { get; set; }
     }
 }
