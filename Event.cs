@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace AgendaConsoleApp
 {
@@ -16,7 +15,5 @@ namespace AgendaConsoleApp
         public bool Active { get; set; }
         public User Organizer { get; set; }
         public Category Category { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? LastUpdatedDate { get; set; }
     }
 }
