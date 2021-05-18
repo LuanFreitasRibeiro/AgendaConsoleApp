@@ -63,7 +63,7 @@ CREATE TABLE [Event]
 	[StartDate] DATETIME NOT NULL,
 	[DurationInMinutes] INT NOT NULL,
 	[EnrollmentDeadlineDate] DATETIME NOT NULL,
-	[Url] VARCHAR(500) NOT NULL, 	--Is 500 enough?
+	[Url] VARCHAR(1024) NOT NULL, 	
 	[Banner] VARCHAR(500) NOT NULL, --Is 500 enough?
 	[Active] Bit NOT NULL,
 	[OrganizerId] INT NOT NULL,
