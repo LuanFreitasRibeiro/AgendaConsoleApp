@@ -59,13 +59,13 @@ CREATE TABLE [Event]
 	[Id] INT NOT NULL IDENTITY(1,1),
 	[Title] VARCHAR(100) NOT NULL,
 	[SpeakerId] INT NOT NULL,
-	[Description] VARCHAR(2000) NOT NULL, --Is 2000 enough?
+	[Description] TEXT(2000) NOT NULL, 
 	[StartDate] DATETIME NOT NULL,
 	[DurationInMinutes] INT NOT NULL,
 	[EnrollmentDeadlineDate] DATETIME NOT NULL,
-	[Url] VARCHAR(1024) NOT NULL, 	
-	[Banner] VARCHAR(500) NOT NULL, --Is 500 enough?
-	[Active] Bit NOT NULL,
+	[UrlSegment] VARCHAR(1024) NOT NULL, 	
+	[BannerUrl] VARCHAR(2000) NOT NULL, --Is 500 enough?
+	[False] Bit NOT NULL,
 	[OrganizerId] INT NOT NULL,
 	[CategoryId] INT NOT NULL,
 	[CreatedDate] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -83,7 +83,7 @@ CREATE TABLE [AttendeeEvents] -- or EventAttendees?
 	[EventId] INT NOT NULL,
 	CONSTRAINT [PK_AttendeeEvents] PRIMARY KEY ([AttendeeId], [EventId]),
 	CONSTRAINT [FK_AttendeeEvents_Attendee] FOREIGN KEY ([AttendeeId]) REFERENCES [User] ([Id]),
-	CONSTRAINT [FK_AttendeeEvents_Event] FOREIGN KEY ([EventI]) REFERENCES [Event] ([Id])
+	CONSTRAINT [FK_AttendeeEvents_Event] FOREIGN KEY ([EventId]) REFERENCES [Event] ([Id])
 );
 GO
 
