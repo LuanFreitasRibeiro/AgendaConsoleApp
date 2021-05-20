@@ -59,7 +59,7 @@ CREATE TABLE [Event]
 	[Id] INT NOT NULL IDENTITY(1,1),
 	[Title] VARCHAR(100) NOT NULL,
 	[SpeakerId] INT NOT NULL,
-	[Description] TEXT(2000) NOT NULL, 
+	[Description] TEXT NOT NULL, 
 	[StartDate] DATETIME NOT NULL,
 	[DurationInMinutes] INT NOT NULL,
 	[EnrollmentDeadlineDate] DATETIME NOT NULL,
