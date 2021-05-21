@@ -10,8 +10,8 @@ namespace AgendaConsoleApp
         public DateTime StartDate { get; set; }
         public int DurationInMinutes { get; set; }
         public DateTime EnrollmentDeadlineDate { get; set; }
-        public string Url { get; set; }
-        public string Banner { get; set; }
+        public string UrlSegment { get; set; }
+        public string BannerUrl { get; set; }
         public bool Active { get; set; }
         public User Organizer { get; set; }
         public Category Category { get; set; }
