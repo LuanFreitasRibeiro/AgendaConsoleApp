@@ -4,11 +4,11 @@ GO
 USE [Agenda]
 GO
 
---Admin, Organizer, Speaker and Attendee
+--Admin, Organizer, Speaker and Attendee?
 CREATE TABLE [Role]
 (
 	[Id] INT NOT NULL IDENTITY(1, 1),
-	[Title] VARCHAR(50) NOT NULL, 		--UTILIZAR VARCHAR OU NVARCHAR NO TIPO DE CAMPO? 
+	[Title] VARCHAR(50) NOT NULL, 		
 	[Description] VARCHAR(500) NOT NULL,
 	[CreatedDate] DATETIME NOT NULL DEFAULT(GETDATE()),
 	[LastUpdatedDate] DATETIME NULL,
@@ -29,8 +29,6 @@ CREATE TABLE [User]
 );
 GO
 
---Should we create columns 
---CreatedDate and LastUpdatedDate on this table?
 CREATE TABLE [UserRoles]
 (
 	[UserId] INT NOT NULL,
@@ -41,7 +39,7 @@ CREATE TABLE [UserRoles]
 );
 GO
 
---Backend, Frontend, Mobile, etc.
+--Backend, Frontend, Mobile, etc?
 CREATE TABLE [Category]
 (
 	[Id] INT NOT NULL IDENTITY(1,1),
@@ -59,13 +57,13 @@ CREATE TABLE [Event]
 	[Id] INT NOT NULL IDENTITY(1,1),
 	[Title] VARCHAR(100) NOT NULL,
 	[SpeakerId] INT NOT NULL,
-	[Description] TEXT NOT NULL, 
+	[Description] TEXT NOT NULL,
 	[StartDate] DATETIME NOT NULL,
 	[DurationInMinutes] INT NOT NULL,
 	[EnrollmentDeadlineDate] DATETIME NOT NULL,
 	[UrlSegment] VARCHAR(1024) NOT NULL, 	
-	[BannerUrl] VARCHAR(2000) NOT NULL, --Is 500 enough?
-	[False] Bit NOT NULL,
+	[BannerUrl] VARCHAR(2000) NOT NULL, 
+	[Active] BIT NOT NULL DEFAULT 0,
 	[OrganizerId] INT NOT NULL,
 	[CategoryId] INT NOT NULL,
 	[CreatedDate] DATETIME NOT NULL DEFAULT(GETDATE()),
@@ -77,13 +75,18 @@ CREATE TABLE [Event]
 );
 GO
 
-CREATE TABLE [AttendeeEvents] -- or EventAttendees? 
+--Do we need to create indexes on tables Category and User? 
+--Apparently, columns set as primary keys and/or unique identifiers 
+--already have their indexes originally created 
+CREATE INDEX [IX_Event_UrlSegment] ON [Event]([UrlSegment]);
+
+CREATE TABLE [AttendeesEvents] 
 (
 	[AttendeeId] INT NOT NULL,
 	[EventId] INT NOT NULL,
-	CONSTRAINT [PK_AttendeeEvents] PRIMARY KEY ([AttendeeId], [EventId]),
-	CONSTRAINT [FK_AttendeeEvents_Attendee] FOREIGN KEY ([AttendeeId]) REFERENCES [User] ([Id]),
-	CONSTRAINT [FK_AttendeeEvents_Event] FOREIGN KEY ([EventId]) REFERENCES [Event] ([Id])
+	CONSTRAINT [PK_AttendeesEvents] PRIMARY KEY ([AttendeeId], [EventId]),
+	CONSTRAINT [FK_AttendeesEvents_Attendee] FOREIGN KEY ([AttendeeId]) REFERENCES [User] ([Id]),
+	CONSTRAINT [FK_AttendeesEvents_Event] FOREIGN KEY ([EventId]) REFERENCES [Event] ([Id])
 );
 GO
 
